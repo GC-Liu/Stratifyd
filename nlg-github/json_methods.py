@@ -250,7 +250,7 @@ def Time_Slot_Trans(num, st, ed, interval, intdate):
 
     month_list = [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    time_metric_list = ['second', 'minute', 'hour', 'day', 'week', 'month', 'season', 'year']
+    #time_metric_list = ['second', 'minute', 'hour', 'day', 'week', 'month', 'season', 'year']
 
     if intdate == 'season':
         month = int(Time_Slot[1])
@@ -261,27 +261,29 @@ def Time_Slot_Trans(num, st, ed, interval, intdate):
 
     elif intdate == 'year':
 
-        rst_Time_Slot = Time_Slot[0] + ' year'
+        rst_Time_Slot = str(Time_Slot[0])
 
 
     elif intdate == 'week':
         week_num = week_of_month(Time_Slot_dt)
 
-        rst_Time_Slot = 'the ' + Date_judge_str(str(week_num)) + ' week of ' + time_metric_list[Time_Slot[1]] + ', ' + str(Time_Slot[0])
+        rst_Time_Slot = 'the ' + Date_judge_str(str(week_num)) + ' week of ' + month_list[int(Time_Slot[1])] + ', ' + str(Time_Slot[0])
 
     elif intdate == 'month':
 
-        rst_Time_Slot = time_metric_list[Time_Slot[1]] + ', ' + str(Time_Slot[0])
+        rst_Time_Slot = month_list[int(Time_Slot[1])] + ', ' + str(Time_Slot[0])
 
 
     elif intdate == 'day':
 
-        rst_Time_Slot = time_metric_list[Time_Slot[1]] + ' ' + str(Date_judge_str(Time_Slot[2])) + ', ' + str(Time_Slot[0])
-
+        rst_Time_Slot = month_list[int(Time_Slot[1])] + str(Date_judge_str(Time_Slot[2])) + ', ' + str(Time_Slot[0])
 
     elif intdate == 'hour':
 
-        rst_Time_Slot = Time_Slot[3] + ' ' + Time_Slot[5] + ', ' + time_metric_list[Time_Slot[1]] + ' ' + str(Date_judge_str(Time_Slot[2])) + ', ' + str(Time_Slot[0])
+
+        rst_Time_Slot = month_list[int(Time_Slot[1])] + str(Date_judge_str(Time_Slot[2])) + ',' + Time_judge_str(
+            str(Time_Slot[3])) + ' ' + Time_Slot[4] + ', ' + str(Time_Slot[0])
+
 
     elif intdate == 'minute':
 
@@ -290,8 +292,8 @@ def Time_Slot_Trans(num, st, ed, interval, intdate):
 
     elif intdate == 'second':
 
-        rst_Time_Slot = Time_Slot[3] + ' : ' + Time_Slot[4] + ' : ' + Time_Slot[6] + ' ' + Time_Slot[5] + ', ' + time_metric_list[Time_Slot[1]] + ' ' + str(Date_judge_str(Time_Slot[2])) + ', ' + str(Time_Slot[0])
-
+        rst_Time_Slot = month_list[int(Time_Slot[1])] + str(Date_judge_str(Time_Slot[2])) + ',' + Time_judge_str(
+            str(Time_Slot[3])) + ':' + str(Time_Slot[5]) + ':' + str(Time_Slot[6]) + Time_Slot[4] + ', ' + str(Time_Slot[0])
 
     return rst_Time_Slot
 
